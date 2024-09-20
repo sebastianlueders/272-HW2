@@ -1,6 +1,6 @@
 
 /*
- * *** PLACE YOUR NAME / SECTION HERE ***
+ * *** SEBASTIAN LUEDERS | SECTION 002 ***
  *
  * Homework # 2 (Programming Assignment). This Java class defines a few basic
  * manipulation operations of a binary trees.
@@ -222,9 +222,16 @@ public class BinaryTree {
 
     private void replaceValueHelper(Node node, int oldVal, int newVal) {
 
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
+        if (node == null) {
+            return;
+        }
 
+        if (node.data == oldVal) {
+            node.data = newVal;
+        }
+
+        replaceValueHelper(node.left, oldVal, newVal);
+        replaceValueHelper(node.right, oldVal, newVal);
     }
 
 
@@ -244,10 +251,16 @@ public class BinaryTree {
 
     private int findMinHelper(Node node) {
 
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
+        
+        if (node == null) {
+            return Integer.MAX_VALUE;
+        } 
 
-        return Integer.MAX_VALUE;
+        int min = Math.min(findMinHelper(node.right), findMinHelper(node.left));
+
+        min = Math.min(node.data, min);
+
+        return min;
     }
 
 
